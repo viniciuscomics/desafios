@@ -6,16 +6,27 @@ package idwall.desafio.string;
 public abstract class StringFormatter {
 
     private Integer limit;
-
-    public StringFormatter() {
-        this.limit = 40;
+    private boolean justify = true;
+    
+    public StringFormatter(Integer limit, boolean justify) {
+        this.limit = limit;
+        this.justify = justify;
     }
+    
+    public Integer getLimit() {
+		return limit;
+	}
+    
+    public boolean isJustify() {
+		return justify;
+	}
 
     /**
      * It receives a text and should return it formatted
      *
      * @param text
      * @return
+     * @throws Exception 
      */
-    public abstract String format(String text);
+    public abstract String format(String text) throws Exception;
 }

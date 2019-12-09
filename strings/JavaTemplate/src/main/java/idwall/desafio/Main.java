@@ -41,8 +41,14 @@ public class Main {
         System.out.println("=========================");
 
         // Run IdwallFormatter
-        final StringFormatter sf = new IdwallFormatter();
-        String outputText = sf.format(text);
+        final StringFormatter sf = new IdwallFormatter(limit,justify);
+        String outputText="";
+		try {
+			outputText = sf.format(text);
+		} catch (Exception e) {
+			System.out.println("Erro: "+e.getMessage());
+			return;
+		}
 
         // Print output text
         System.out.println("Output: ");
