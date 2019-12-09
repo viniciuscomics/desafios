@@ -82,7 +82,7 @@ public class IdwallFormatter extends StringFormatter {
 
 			int space = getLimit() - text.length();
 
-			for (; space > 0;) {
+			for (; space > 0;space--) {
 				int idx = text.indexOf(" ");
 
 				if (idx < 0) {
@@ -104,7 +104,7 @@ public class IdwallFormatter extends StringFormatter {
 				str.append(aux);
 
 				text = text.substring(aux.length() - 1);
-				space--;
+				
 			}
 			str.append(text);
 			return str.toString();
