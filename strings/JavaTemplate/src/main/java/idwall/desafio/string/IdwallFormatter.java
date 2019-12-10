@@ -5,7 +5,7 @@ package idwall.desafio.string;
  */
 public class IdwallFormatter extends StringFormatter {
 
-	private int SALTO_LINHA = 0x0A;
+	private int NEW_LINE = 0x0A;
 	
 	public IdwallFormatter(Integer limit, boolean justify) {
 		super(limit, justify);
@@ -42,9 +42,8 @@ public class IdwallFormatter extends StringFormatter {
 			String str = text.substring(0, getLimit());
 
 			if (!Character.isWhitespace(text.charAt(getLimit()))) {
-
 				
-				int idx = str.lastIndexOf(SALTO_LINHA);
+				int idx = str.lastIndexOf(NEW_LINE);
 
 				if (idx < 0) {
 					idx = str.lastIndexOf(" ");
@@ -83,13 +82,13 @@ public class IdwallFormatter extends StringFormatter {
 
 			StringBuilder str = new StringBuilder();
 
-			int space = getLimit() - text.length();
+			int backSpace = getLimit() - text.length();						
 			
-			if(text.indexOf(SALTO_LINHA) > 0) {				
-				space += getNumOcorrecia(text, (char) SALTO_LINHA);				
-			}				
+			int newLine = getNumOcorrecia(text, (char) NEW_LINE);
 			
-			for (; space > 0;space--) {
+			backSpace+= newLine;
+			
+			for (; backSpace > 0;backSpace--) {
 				
 				int idx = text.indexOf(" ");			
 
@@ -102,10 +101,8 @@ public class IdwallFormatter extends StringFormatter {
 
 					text = str.toString();
 					str = new StringBuilder();
-					space = getLimit() - text.length();
-					
-					idx = text.indexOf(" ");			
-					
+					backSpace = (getLimit() - text.length())+newLine;					
+					idx = text.indexOf(" ");					
 				}				
 				
 				String aux = text.substring(0, idx + 1) + " ";
