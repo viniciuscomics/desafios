@@ -5,6 +5,8 @@ package idwall.desafio.string;
  */
 public class IdwallFormatter extends StringFormatter {
 
+	private int SALTO_LINHA = 0x0A;
+	
 	public IdwallFormatter(Integer limit, boolean justify) {
 		super(limit, justify);
 	}
@@ -41,7 +43,8 @@ public class IdwallFormatter extends StringFormatter {
 
 			if (!Character.isWhitespace(text.charAt(getLimit()))) {
 
-				int idx = str.lastIndexOf(0x0A);
+				
+				int idx = str.lastIndexOf(SALTO_LINHA);
 
 				if (idx < 0) {
 					idx = str.lastIndexOf(" ");
@@ -82,8 +85,8 @@ public class IdwallFormatter extends StringFormatter {
 
 			int space = getLimit() - text.length();
 			
-			if(text.indexOf(0X0A) > 0) {				
-				space += getNumOcorrecia(text, (char) 0x0A);				
+			if(text.indexOf(SALTO_LINHA) > 0) {				
+				space += getNumOcorrecia(text, (char) SALTO_LINHA);				
 			}				
 			
 			for (; space > 0;space--) {
