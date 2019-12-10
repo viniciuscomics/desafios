@@ -39,7 +39,7 @@ public class IdwallFormatter extends StringFormatter {
 
 			String str = text.substring(0, getLimit());
 
-			if (!Character.isWhitespace(text.charAt(getLimit())) && text.charAt(getLimit()) != 0x0A) {
+			if (!Character.isWhitespace(text.charAt(getLimit()))) {
 
 				int idx = str.lastIndexOf(0x0A);
 
@@ -75,15 +75,20 @@ public class IdwallFormatter extends StringFormatter {
 			}
 
 			if (text.indexOf(" ") < 0) {
-				return String.format("%-" + getLimit() + "s", text);
+				return String.format("%" + getLimit() + "s", text);
 			}
 
 			StringBuilder str = new StringBuilder();
 
 			int space = getLimit() - text.length();
-
+			
+			if(text.indexOf(0X0A) > 0) {				
+				space += getNumOcorrecia(text, (char) 0x0A);				
+			}				
+			
 			for (; space > 0;space--) {
-				int idx = text.indexOf(" ");
+				
+				int idx = text.indexOf(" ");			
 
 				if (idx < 0) {
 					str.append(text);
@@ -95,10 +100,11 @@ public class IdwallFormatter extends StringFormatter {
 					text = str.toString();
 					str = new StringBuilder();
 					space = getLimit() - text.length();
-
-					idx = text.indexOf(" ");
-				}
-
+					
+					idx = text.indexOf(" ");			
+					
+				}				
+				
 				String aux = text.substring(0, idx + 1) + " ";
 
 				str.append(aux);
@@ -111,6 +117,21 @@ public class IdwallFormatter extends StringFormatter {
 		} else {
 			return text;
 		}
+	}
+	
+	private int getNumOcorrecia(String text, char str) {
+		
+		int ocorrencia = 0;
+		
+		for(int i = 0; i < text.length(); i++) {
+			
+			if(text.charAt(i) == str) {
+				ocorrencia++;
+			}
+			
+		}
+		
+		return ocorrencia;
 	}
 
 }
