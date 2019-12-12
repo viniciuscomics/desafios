@@ -32,7 +32,7 @@ public class SearchReddit implements ISearchReddit {
 			TrendingTopicsRedditWrapper wrapper = new TrendingTopicsRedditWrapper();
 			wrapper.setMapTopics(mapTopics);
 
-			return ResponseEntity.status(HttpStatus.CREATED).body(wrapper);
+			return ResponseEntity.status(HttpStatus.OK).body(wrapper);
 		} catch (IOException e) {
 			log.error("Error ao buscar topicos.", e);
 		}
