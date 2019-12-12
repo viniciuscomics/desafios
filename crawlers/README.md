@@ -1,20 +1,41 @@
 # Desafio 2: Crawlers
 
-Parte do trabalho na IDwall inclui desenvolver *crawlers/scrapers* para coletar dados de websites.
-Como nós nos divertimos trabalhando, às vezes trabalhamos para nos divertir!
+Para o desenvolvimento deste desafio eu utilizei o Spring Boot.
+Criei uma api rest que executa o input passado e retorna o resultado proposto no desafio.
+E tambem foi criado um app desktop que consome a api criada por mim e a api do telegram.
 
-O Reddit é quase como um fórum com milhares de categorias diferentes. Com a sua conta, você pode navegar por assuntos técnicos, ver fotos de gatinhos, discutir questões de filosofia, aprender alguns life hacks e ficar por dentro das notícias do mundo todo!
+Na api eu externalizei alguns parametros, utilizando o arquivo application.properties;
 
-Subreddits são como fóruns dentro do Reddit e as postagens são chamadas *threads*.
+## properties api server;
+reddit.domain=https://old.reddit.com/r/ -> url do reddit
+reddit.timeout-second=10 -> timeout em segundos, para a chamada no reddit
+reddit.min-pontos=5000 -> valor minimo para buscar uma thread no reddit
+reddit.offline=false -> Esse parametro é para quando não tem internet, e caso tem o html da pagina do reddit e queira fazer um teste.
+reddit.path-html=path\\hmlt\\redit\\cats.html -> Caminho do arquivo html do reddit, caso o parametro acima esteja true.
 
-Para quem gosta de gatos, há o subreddit ["/r/cats"](https://www.reddit.com/r/cats) com threads contendo fotos de gatos fofinhos.
-Para *threads* sobre o Brasil, vale a pena visitar ["/r/brazil"](https://www.reddit.com/r/brazil) ou ainda ["/r/worldnews"](https://www.reddit.com/r/worldnews/).
-Um dos maiores subreddits é o "/r/AskReddit".
+## properties consumidor;
+reddit.url-api=http://localhost:8080/topics/  -> url da api server
+telegram.token=seu token                      -> token gerado pelo bot do telegram
+telegram.url-api=https://api.telegram.org/bot -> url do servico  telegran
+telegram.chat-id=id chat					  -> id do chat do canal publico
 
-Cada *thread* possui uma pontuação que, simplificando, aumenta com "up votes" (tipo um like) e é reduzida com "down votes".
 
-Sua missão é encontrar e listar as *threads* que estão bombando no Reddit naquele momento!
-Consideramos como bombando *threads* com 5000 pontos ou mais.
+## Executando API Server;
+
+java -jar apiserver.jar -> irá subir com o application.properties default
+
+ou 
+
+java -jar apiserver.jar -Dspring.config.location=your.properties
+
+
+## Executando App consumidor;
+
+java -jar appconsumer.jar cats;brazil;worldnews
+
+ou 
+
+java -jar appconsumer.jar /NadaPraFazer cats;brazil;worldnews
 
 ## Entrada
 - Lista com nomes de subreddits separados por ponto-e-vírgula (`;`). Ex: "askreddit;worldnews;cats"
@@ -25,7 +46,3 @@ Essa parte pode ser um CLI simples, desde que a formatação da impressão fique
 
 ### Parte 2
 Construir um robô que nos envie essa lista via Telegram sempre que receber o comando `/NadaPraFazer [+ Lista de subrredits]` (ex.: `/NadaPraFazer programming;dogs;brazil`)
-
-### Dicas
- - Use https://old.reddit.com/
- - Qualquer método para coletar os dados é válido. Caso não saiba por onde começar, procure por JSoup (Java), SeleniumHQ (Java), PhantomJS (Javascript) e Beautiful Soup (Python).
