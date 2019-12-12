@@ -1,17 +1,9 @@
 # Desafio 1: Strings
 
-Após ler o coding style do kernel Linux, você descobre a mágica que é
-ter linhas de código com no máximo 80 caracteres cada uma.
-
-Assim, você decide que de hoje em diante seus e-mails enviados também
-seguirão um padrão parecido e resolve desenvolver um plugin para te ajudar
-com isso. Contudo, seu plugin aceitará no máximo 40 caracteres por linha.
-
-Implemente uma função que receba:
-1. um texto qualquer
-2. um limite de comprimento
-
-e seja capaz de gerar os outputs dos desafios abaixo.
+Para o desenvolvimento deste desafio eu utilizei o template disponibilizado.
+Para a função de ajustar o texto de acordo com o número de colunas parametrizada,
+eu utilizei recursividade, e a cada linha configurada eu chamo uma outra função que criei
+para justificar o texto.
 
 ## Exemplo input
 
@@ -27,9 +19,11 @@ Você deve seguir o exemplo de output [deste arquivo](https://github.com/idwall/
 ### Parte 2 (Intermediário) - limite 40 caracteres
 O exemplo de output está [neste arquivo](https://github.com/idwall/desafios/blob/master/strings/output-parte2.txt), onde além de o arquivo possuir, no máximo, 40 caracteres por linha, o texto deve estar **justificado**.
 
-### Dicas
-- Existe um template para projetos em Java ;)
+### Executando o programa
+java -jar meujar.jar -> O programa irá executar com os valores default
 
-### Extras
+ou
 
-- Parametrização da quantidade de caracteres por linha.
+java - jar meujar.jar "seu texto" [total de colunas] [true|false]-> se justifica ou nao.
+
+ex: java -jar meujar.jar "bla bla bla bla bla bla" 40 true
