@@ -17,10 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-public class SearchReddit implements ISearchReddit {
-
-	// @Autowired
-	// private ConfigParamMotor configParamMotor;
+public class SearchReddit implements ISearchReddit {	
 
 	@Autowired
 	private IMotorReddit motorReddit;
