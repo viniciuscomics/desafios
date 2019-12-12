@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.idwall.engine.IMotorReddit;
 import br.com.idwall.model.TrendingTopicsReddit;
+import br.com.idwall.model.TrendingTopicsRedditWrapper;
 import br.com.idwall.service.ISearchReddit;
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,8 +31,11 @@ public class SearchReddit implements ISearchReddit {
 
 		try {
 			mapTopics = motorReddit.getTopThreadsReddit(params);
+			
+			TrendingTopicsRedditWrapper wrapper = new TrendingTopicsRedditWrapper();
+			wrapper.setMapTopics(mapTopics);
 
-			return ResponseEntity.status(HttpStatus.OK).body(mapTopics);
+			return ResponseEntity.status(HttpStatus.CREATED).body(wrapper);
 		} catch (IOException e) {
 			log.error("Error ao buscar topicos.", e);
 		}
