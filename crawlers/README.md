@@ -8,16 +8,23 @@ Na api eu externalizei alguns parametros, utilizando o arquivo application.prope
 
 ## properties api server;
 reddit.domain=https://old.reddit.com/r/ -> url do reddit
+
 reddit.timeout-second=10 -> timeout em segundos, para a chamada no reddit
+
 reddit.min-pontos=5000 -> valor minimo para buscar uma thread no reddit
+
 reddit.offline=false -> Esse parametro é para quando não tem internet, e caso tem o html da pagina do reddit e queira fazer um teste.
+
 reddit.path-html=path\\hmlt\\redit\\cats.html -> Caminho do arquivo html do reddit, caso o parametro acima esteja true.
 
 ## properties consumidor;
 reddit.url-api=http://localhost:8080/topics/  -> url da api server
-telegram.token=seu token                      -> token gerado pelo bot do telegram
-telegram.url-api=https://api.telegram.org/bot -> url do servico  telegran
-telegram.chat-id=id chat					  -> id do chat do canal publico
+
+telegram.token=seu token                      -> token gerado pelo bot do telegram.
+
+telegram.url-api=https://api.telegram.org/bot -> url do servico  telegram.
+
+telegram.chat-id=id chat					  -> id do chat do canal publico.
 
 
 ## Executando API Server;
