@@ -30,6 +30,7 @@ java -jar apiserver.jar -Dspring.config.location=your.properties
 
 
 ## Executando App consumidor;
+Obs: Necessario que tenha iniciado a API Server.
 
 java -jar appconsumer.jar cats;brazil;worldnews
 
